@@ -1,0 +1,16 @@
+#!/bin/bash
+
+exec_app=$(grep -E '^Exec=|^Name=' /usr/share/applications/*.desktop ~/.local/share/applications/*.desktop 2>/dev/null \
+  | sed 's/^Exec=//;s/^Name=//' \
+  | awk 'NR%2{printf "%s|", $0; next}{print $0}' \
+  | sort | uniq \
+  | bemenu -i -l 10 -H 36 --center --width-factor 0.5 \
+    --fn "JetBrainsMono Nerd Font 14" \
+    --tb "#1e1e2e" --tf "#cdd6f4" \
+    --fb "#1e1e2e" --ff "#cdd6f4" \
+    --nb "#1e1e2e" --nf "#a6adc8" \
+    --hb "#313244" --hf "#f5c2e7" \
+    --prompt "Run: ")
+
+[[ $exec_app ]] && setsid ${exec_app#*|} &>/dev/null &
+
