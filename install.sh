@@ -8,7 +8,7 @@ ln -sf ~/dotfiles/.config/kitty ~/.config/kitty
 ln -sf ~/dotfiles/.config/hypr ~/.config/hypr
 
 mkdir -p ~/.local/bin
-ln -sf ~/dotfiles/bin/bemenu-launch ~/.local/bin/bemenu-launch
+ln -sf ~/dotfiles/bin/bemenu-exec ~/.local/bin/bemenu-exec
 
 echo "✅ Dotfiles linked."
 
