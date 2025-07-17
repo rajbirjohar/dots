@@ -77,6 +77,7 @@ sudo pacman -S --noconfirm \
   kitty \
   zsh \
   ttc-iosevka \
+  ttf-iosevka-nerd \
   waybar \
   mako \
   swaybg \
