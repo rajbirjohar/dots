@@ -1,0 +1,9 @@
+background-color=#0d1117E6
+text-color=#c9d1d9
+border-color=#58a6ff
+border-size=2
+padding=12
+margin=10
+default-timeout=5000
+font=Iosevka Nerd Font 14
+max-visible=5
