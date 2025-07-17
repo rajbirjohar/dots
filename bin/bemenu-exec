@@ -1,16 +1,36 @@
 #!/bin/bash
+# --- palette ----------------------------------------------------
+BG="#0d1117"
+FG="#c9d1d9"
+HL_BG="#388bfd"
+HL_FG="#0d1117"
+# ---------------------------------------------------------------
 
-exec_app=$(grep -E '^Exec=|^Name=' /usr/share/applications/*.desktop ~/.local/share/applications/*.desktop 2>/dev/null \
-  | sed 's/^Exec=//;s/^Name=//' \
-  | awk 'NR%2{printf "%s|", $0; next}{print $0}' \
-  | sort | uniq \
-  | bemenu -i -l 10 -H 36 --center --width-factor 0.5 \
-    --fn "JetBrainsMono Nerd Font 14" \
-    --tb "#1e1e2e" --tf "#cdd6f4" \
-    --fb "#1e1e2e" --ff "#cdd6f4" \
-    --nb "#1e1e2e" --nf "#a6adc8" \
-    --hb "#313244" --hf "#f5c2e7" \
-    --prompt "Run: ")
+exec_app=$(
+  for file in /usr/share/applications/*.desktop ~/.local/share/applications/*.desktop; do
+    [ -f "$file" ] || continue
+    name=$(grep -m1 '^Name=' "$file" | cut -d= -f2-)
+    exec=$(grep -m1 '^Exec=' "$file" | cut -d= -f2-)
+    [[ -z $name || -z $exec ]] && continue
+    printf '%s\t%s\n' "$name" "${exec// *%[Uuficn]/}"
+  done | sort -u
+)
 
-[[ $exec_app ]] && setsid ${exec_app#*|} &>/dev/null &
+selected=$(echo "$exec_app" | bemenu --center \
+  --width-factor 0.5 \
+  --line-height 34 \
+  -l 20 \
+  --fn "JetBrainsMono Nerd Font 14" \
+  --tb "$BG" --tf "$FG" \
+  --fb "$BG" --ff "$FG" \
+  --cb "$BG" --cf "$FG" \
+  --nb "$BG" --nf "$FG" \
+  --ab "$BG" --af "$FG" \
+  --hb "$HL_BG" --hf "$HL_FG" \
+  --sb "$HL_BG" --sf "$HL_FG" \
+  --prompt "Run: ")
+
+if [[ -n $selected ]]; then
+  setsid "${selected#*$'\t'}" &>/dev/null &
+fi
 
