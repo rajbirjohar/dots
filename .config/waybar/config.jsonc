@@ -7,6 +7,12 @@
   "clock": {
     "format": "{:%m.%d.%Y %H:%M}"
   },
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "format": "{name}",
+    "show-special": false,
+    "show-empty": true
+  },
   "network": {
     "interface": "wlan0", // or eth0 depending on your setup
     "format": "{ifname}"

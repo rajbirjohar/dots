@@ -1,10 +1,10 @@
 window#waybar {
   border-radius: 16px;
-  background-color: #0d1117;
+  background: #0d1117;
 }
 
 * {
-  font-family: "Iosevka", monospace;
+  font-family: "Iosevka Nerd Font", "Iosevka", monospace;
   font-size: 16px;
   font-weight: 600;
   color: #c9d1d9;
@@ -18,36 +18,35 @@ window#waybar {
   padding-left: 12px;
 }
 
-#workspaces button {
-  background-color: transparent;
-  border-radius: 0px;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-#workspaces button:hover {
-  background-color: transparent;
-  border-color: #58a6ff;
-}
-
+#workspaces button,
 #pulseaudio,
 #network,
 #cpu,
 #memory,
 #clock {
-  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+  background: transparent;
   padding: 8px 12px;
   border-radius: 0px;
+  border: none;
   border-bottom: 2px solid transparent;
   transition: border-color 0.2s ease;
 }
 
+#workspaces button:hover,
 #pulseaudio:hover,
 #network:hover,
 #cpu:hover,
 #memory:hover,
 #clock:hover {
-  border-bottom: 2px solid #58a6ff; 
+  border-color: #58a6ff; 
+}
+
+#workspaces button.active {
+  background: transparent;
+  border-color: #58a6ff;
+  color: #58a6ff;
 }
 
 tooltip {
