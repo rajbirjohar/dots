@@ -5,7 +5,8 @@
   "modules-right": ["pulseaudio", "network", "cpu", "memory", "clock"],
   "margin": "10px 10px 0 10px",
   "clock": {
-    "format": "{:%m.%d.%Y %H:%M}"
+    "format": "{:%m.%d.%Y %H:%M}",
+    "tooltip-format": "{:%A, %B %d, %Y %H:%M:%S}"
   },
   "hyprland/workspaces": {
     "on-click": "activate",
@@ -14,17 +15,18 @@
     "show-empty": true
   },
   "network": {
-    "interface": "wlan0", // or eth0 depending on your setup
-    "format": "{ifname}"
+    "interface": "wlan0", 
+    "format": "󰖩 ",
+    "tooltip-format": "{essid}\n{ipaddr}\nStrength @ {signalStrength}%"
   },
   "cpu": {
-    "format": "CPU @ {usage}%"
+    "format": "󰍛 CPU @ {usage}%"
   },
   "memory": {
-    "format": "RAM @ {used:0.1f}G"
+    "format": "󰍛 RAM @ {used:0.1f}G"
   },
   "pulseaudio": {
-    "format": "{volume}%"
+    "format": "󰕾 {volume}%"
   }
 }
 
